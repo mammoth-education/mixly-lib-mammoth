@@ -1,0 +1,31 @@
+<!--
+  type="company" 
+  block="block/Mammoth.js" 
+  generator="generator/Mammoth.js" 
+-->
+<script type="text/javascript" src="../../blocks/company/Mammoth.js"></script>
+<script type="text/javascript" src="../../generators/arduino/company/Mammoth.js"></script>
+<category id="Mammoth" name="长毛象教育" colour="#00A29A">
+
+	<block type="BH1745_begin">
+	</block>
+	
+	<block type="BH1745_read">
+    </block>
+
+	<block type="BH1745_readColor">
+	</block>
+
+	<block type="BH1745_readColorValue">
+	</block>
+
+	<block type="BH1745_isDetectColor">
+    </block>
+
+	<block type="BH1745_setRgbcMode">
+    </block>
+	
+	<block type="BH1745_setGain">
+    </block>
+	
+</category>
