@@ -13,10 +13,10 @@
 	<block type="BH1745_read">
     </block>
 
-	<block type="BH1745_readColor">
+	<block type="BH1745_readColorValue">
 	</block>
 
-	<block type="BH1745_readColorValue">
+	<block type="BH1745_readColor">
 	</block>
 
 	<block type="BH1745_isDetectColor">
