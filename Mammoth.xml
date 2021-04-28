@@ -27,5 +27,12 @@
 	
 	<block type="BH1745_setGain">
     </block>
+
+	<block type="Motor_begin">
+	</block>
+
+	<block type="Motor_setStatus">
+	</block>
+	
 	
 </category>

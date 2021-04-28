@@ -60,3 +60,20 @@ Blockly.Arduino.BH1745_setGain = function() {
     return code;
 };
 
+Blockly.Arduino.Motor_begin = function() {
+    var IST = this.getFieldValue('IST');
+    Blockly.Arduino.definitions_['define_Motor_1'] = '#include <motor.h>';
+    Blockly.Arduino.definitions_['define_Motor_2'] = 'Motor '+IST+' = Motor();';
+    var pin = this.getFieldValue('pin');
+    var code = '';
+    code += IST+'.begin(' + pin +');\n';
+    return code;
+};
+
+Blockly.Arduino.Motor_setStatus = function() {
+    var IST = this.getFieldValue('IST');
+    var value = this.getTitleValue('VAR');
+    var code = ''
+    code += IST+'.setStatus('+value+');\n';
+    return code;
+};

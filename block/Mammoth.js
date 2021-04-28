@@ -3,12 +3,13 @@
 goog.provide('Blockly.Blocks.Mammoth');
 goog.require('Blockly.Blocks');
 
+//颜色传感器
 Blockly.Blocks.BH1745_begin = {
 
     init: function() {
   
       this.appendDummyInput("")
-      .appendField("BH1745")
+      .appendField("颜色传感器")
       .appendField(new Blockly.FieldTextInput("bh"), "IST")
       .appendField("设置引脚")
       .appendField("SDA")
@@ -30,7 +31,7 @@ Blockly.Blocks.BH1745_read = {
     init: function() {
   
       this.appendDummyInput("")
-          .appendField("BH1745")
+          .appendField("颜色传感器")
           .appendField(new Blockly.FieldTextInput("bh"), "IST")
           .appendField("读值");
       this.setColour("#00A29A");
@@ -46,7 +47,7 @@ Blockly.Blocks.BH1745_read = {
 Blockly.Blocks.BH1745_readColor = {
     init: function() {
         this.appendDummyInput("")
-        .appendField("BH1745")
+        .appendField("颜色传感器")
         .appendField(new Blockly.FieldTextInput("bh"), "IST")
         .appendField("读颜色");
         this.setColour("#00A29A");
@@ -68,7 +69,7 @@ Blockly.Blocks.BH1745_isDetectColor = {
             ["紫色",'PURPLE']
         ];
         this.appendDummyInput()
-            .appendField("BH1745")
+            .appendField("颜色传感器")
             .appendField(new Blockly.FieldTextInput("bh"), "IST")
             .appendField("判断颜色")
             .appendField(new Blockly.FieldDropdown(COLOR),'COLOR');
@@ -91,7 +92,7 @@ Blockly.Blocks.BH1745_readColorValue = {
             ["亮度",'lightness']
         ];
         this.appendDummyInput()
-            .appendField("BH1745")
+            .appendField("颜色传感器")
             .appendField(new Blockly.FieldTextInput("bh"), "IST")
             .appendField("获取")
             .appendField(new Blockly.FieldDropdown(VAR),'VAR')
@@ -111,7 +112,7 @@ Blockly.Blocks.BH1745_setRgbcMode = {
             ["16位",'RGBC_16_BIT']
         ];
         this.appendDummyInput()
-            .appendField("BH1745")
+            .appendField("颜色传感器")
             .appendField(new Blockly.FieldTextInput("bh"), "IST")
             .appendField("设置RGB模式为")
             .appendField(new Blockly.FieldDropdown(VAR),'VAR');
@@ -131,7 +132,7 @@ Blockly.Blocks.BH1745_setGain = {
             ["16倍",'GAIN_16X']
         ];
         this.appendDummyInput()
-            .appendField("BH1745")
+            .appendField("颜色传感器")
             .appendField(new Blockly.FieldTextInput("bh"), "IST")
             .appendField("设置增益为")
             .appendField(new Blockly.FieldDropdown(VAR),'VAR');
@@ -140,5 +141,44 @@ Blockly.Blocks.BH1745_setGain = {
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setTooltip("设置增益")
+    }
+};
+
+//电机
+Blockly.Blocks.Motor_begin = {
+
+    init: function() {
+  
+      this.appendDummyInput("")
+      .appendField("电机")
+      .appendField(new Blockly.FieldTextInput("motor"), "IST")
+      .appendField("设置引脚")
+      .appendField(new Blockly.FieldDropdown(profile.default.digital), "pin")
+      this.setColour("#00A29A");
+      this.setInputsInline(true);
+      this.setPreviousStatement(true);
+      this.setNextStatement(true);
+      this.setTooltip("设置电机引脚");
+      this.setHelpUrl('');
+  }
+  
+};
+
+Blockly.Blocks.Motor_setStatus = {
+    init:function(){
+        var VAR = [
+            ["开",'1'],
+            ["关",'0'],
+        ];
+        this.appendDummyInput()
+            .appendField("电机")
+            .appendField(new Blockly.FieldTextInput("motor"), "IST")
+            .appendField("设置状态为")
+            .appendField(new Blockly.FieldDropdown(VAR),'VAR');
+        this.setColour("#00A29A");
+        this.setInputsInline(true);
+        this.setPreviousStatement(true);
+        this.setNextStatement(true);
+        this.setTooltip("设置电机状态");
     }
 };
