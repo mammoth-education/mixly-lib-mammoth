@@ -1,3 +1,0 @@
-[submodule "Mammoth/BH1745"]
-	path = Mammoth/BH1745
-	url = git@github.com:sunfounder/arduino-lib-bh1745
