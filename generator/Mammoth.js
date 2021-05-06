@@ -77,3 +77,21 @@ Blockly.Arduino.Motor_setStatus = function() {
     code += IST+'.setStatus('+value+');\n';
     return code;
 };
+
+Blockly.Arduino.Servo_begin = function() {
+    var IST = this.getFieldValue('IST');
+    Blockly.Arduino.definitions_['define_Servo_1'] = '#include <servo.h>';
+    Blockly.Arduino.definitions_['define_Servo_2'] = 'MServo '+IST+'= MServo();';
+    var pin = this.getFieldValue('pin');
+    var code = ''
+    code += IST+'.begin('+pin+');\n';
+    return code;
+};
+
+Blockly.Arduino.Servo_setAngle = function() {
+    var IST = this.getFieldValue('IST');
+    var angle = Blockly.Arduino.valueToCode(this, 'angle',Blockly.Arduino.ORDER_ASSIGNMENT) || '0'; 
+    var code = ''
+    code += IST+'.setAngle('+angle+');\n';
+    return code;
+};

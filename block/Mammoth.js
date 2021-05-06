@@ -182,3 +182,38 @@ Blockly.Blocks.Motor_setStatus = {
         this.setTooltip("设置电机状态");
     }
 };
+
+//舵机
+Blockly.Blocks.Servo_begin = {
+
+    init: function() {
+  
+      this.appendDummyInput("")
+      .appendField("舵机")
+      .appendField(new Blockly.FieldTextInput("servo"), "IST")
+      .appendField("设置引脚")
+      .appendField(new Blockly.FieldDropdown(profile.default.digital), "pin")
+      this.setColour("#00A29A");
+      this.setInputsInline(true);
+      this.setPreviousStatement(true);
+      this.setNextStatement(true);
+      this.setTooltip("设置舵机引脚");
+      this.setHelpUrl('');
+  }
+  
+};
+
+Blockly.Blocks.Servo_setAngle = {
+    init:function(){
+        this.appendDummyInput()
+            .appendField("舵机")
+            .appendField(new Blockly.FieldTextInput("servo"), "IST")
+            .appendField("设置角度为(0~270)");
+        this.appendValueInput("angle");
+        this.setColour("#00A29A");
+        this.setInputsInline(true);
+        this.setPreviousStatement(true);
+        this.setNextStatement(true);
+        this.setTooltip("设置电机状态");
+    }
+};

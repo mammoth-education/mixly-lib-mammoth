@@ -7,11 +7,11 @@
  #include "WProgram.h"
 #endif
 
-#define DEBUG 0
+#define DEBUG 1
 
 #define LEDC_CHANNEL_0     0
 #define LEDC_TIMER_13_BIT  13
-#define LEDC_BASE_FREQ     5000
+#define LEDC_BASE_FREQ     100
 
 #define MIN 0
 #define MAX 100
@@ -29,7 +29,7 @@ class Motor {
 
   private:
     int currentPower = 0;
-    void analogWrite(int value);
+    void write(int value);
 };
 
 #endif
