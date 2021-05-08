@@ -9,17 +9,17 @@
 
 #include <ESP32Servo.h>
 
-#define DEBUG 0
+#define DEBUG 1
 
 class MServo {
   public:
     MServo();
 
     int pin;
-    int MIN_PULSE = 500;
-    int MAX_PULSE = 2500;
-    int MIN_ANGLE = 0;
-    int MAX_ANGLE = 270;
+    int minPulse = 500;
+    int maxPulse = 2500;
+    int minAngle = 0;
+    int maxAngle = 270;
     Servo myservo;
   
     void begin(int p);
