@@ -72,8 +72,6 @@
 // Default Arduino Servo.h
 #define DEFAULT_uS_LOW 544
 #define DEFAULT_uS_HIGH 2400
-#define DEFAULT_ANGLE_LOW 0
-#define DEFAULT_ANGLE_HIGH 180
 
 // Values for TowerPro MG995 large servos (and many other hobbyist servos)
 //#define DEFAULT_uS_LOW 1000        // 1000us
@@ -90,6 +88,8 @@
 
 #define MIN_PULSE_WIDTH       500     // the shortest pulse sent to a servo  
 #define MAX_PULSE_WIDTH      2500     // the longest pulse sent to a servo 
+#define DEFAULT_MIN_ANGLE       0
+#define DEFAULT_MAX_ANGLE     180
 #define DEFAULT_PULSE_WIDTH  1500     // default pulse width when servo is attached
 #define DEFAULT_PULSE_WIDTH_TICKS 4825
 //#define REFRESH_CPS            50
@@ -126,7 +126,7 @@ public:
 	Servo();
 	// Arduino Servo Library calls
 	int attach(int pin); // attach the given pin to the next free channel, returns channel number or 0 if failure
-	int attach(int pin, int min_pulse, int max_pulse, int min_angle, int max_angle); // as above but also sets min and max values for writes.
+	int attach(int pin, int minPulse, int maxPulse, int minAngle, int maxAngle); // as above but also sets min and max values for writes.
 	void detach();
 	void write(int value); // if value is < MIN_PULSE_WIDTH its treated as an angle, otherwise as pulse width in microseconds
 	void writeMicroseconds(int value);     // Write pulse width in microseconds
@@ -148,10 +148,10 @@ private:
 //   static int ChannelUsed[];                          // used to track whether a channel is in service
 //   int servoChannel = 0;                              // channel number for this servo
 
-	int min_pulse = DEFAULT_uS_LOW;           // minimum pulse width for this servo
-	int max_pulse = DEFAULT_uS_HIGH;            // maximum pulse width for this servo
-	int min_angle = 0;           // minimum pulse width for this servo
-	int max_angle = 180;            // maximum pulse width for this servo
+	int minPulse = DEFAULT_uS_LOW;           // minimum pulse width for this servo
+	int maxPulse = DEFAULT_uS_HIGH;            // maximum pulse width for this servo
+	int minAngle = 0;
+	int maxAngle = 180;
 	int pinNumber = 0;                      // GPIO pin assigned to this channel
 	int timer_width = DEFAULT_TIMER_WIDTH; // ESP32 allows variable width PWM timers
 	int ticks = DEFAULT_PULSE_WIDTH_TICKS; // current pulse width on this channel

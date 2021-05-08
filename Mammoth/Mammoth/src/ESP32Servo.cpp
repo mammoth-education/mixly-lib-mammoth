@@ -60,10 +60,8 @@ Servo::Servo()
 	this->ticks = DEFAULT_PULSE_WIDTH_TICKS;
 	this->timer_width = DEFAULT_TIMER_WIDTH;
 	this->pinNumber = -1;     // make it clear that we haven't attached a pin to this channel
-	this->min_pulse = DEFAULT_uS_LOW;
-	this->max_pulse = DEFAULT_uS_HIGH;
-	this->min_angle = 0;
-	this->max_angle = 180;
+	this->minPulse = DEFAULT_uS_LOW;
+	this->maxPulse = DEFAULT_uS_HIGH;
 	this->timer_width_ticks = pow(2,this->timer_width);
 
 }
@@ -75,18 +73,17 @@ ESP32PWM * Servo::getPwm(){
 int Servo::attach(int pin)
 {
 
-    return (this->attach(pin, DEFAULT_uS_LOW, DEFAULT_uS_HIGH, DEFAULT_ANGLE_LOW, DEFAULT_ANGLE_HIGH));
+    return (this->attach(pin, DEFAULT_uS_LOW, DEFAULT_uS_HIGH, DEFAULT_MIN_ANGLE, DEFAULT_MAX_ANGLE));
 }
 
-int Servo::attach(int pin, int min_pulse, int max_pulse, int min_angle, int max_angle)
+int Servo::attach(int pin, int minPulse, int maxPulse, int minAngle, int maxPulseAngle)
 {
 
-#ifdef ENFORCE_PINS
+        #ifdef ENFORCE_PINS
         // Recommend only the following pins 2,4,12-19,21-23,25-27,32-33
         if (pwm.hasPwm(pin))
         {
-#endif
-
+        #endif
             // OK to proceed; first check for new/reuse
             if (this->pinNumber < 0) // we are attaching to a new or previously detached pin; we need to initialize/reinitialize
             {
@@ -105,15 +102,15 @@ int Servo::attach(int pin, int min_pulse, int max_pulse, int min_angle, int max_
 #endif
 
 
-        // min/max checks 
-        if (min_pulse < MIN_PULSE_WIDTH)          // ensure pulse width is valid
-            min_pulse = MIN_PULSE_WIDTH;
-        if (max_pulse > MAX_PULSE_WIDTH)
-            max_pulse = MAX_PULSE_WIDTH;
-        this->min_pulse = min_pulse;     //store this value in uS
-        this->max_pulse = max_pulse;    //store this value in uS
-        this->min_angle = min_angle;     //store this value in uS
-        this->max_angle = max_angle;    //store this value in uS
+        // minPulse/maxPulse checks 
+        if (minPulse < MIN_PULSE_WIDTH)          // ensure pulse width is valid
+            minPulse = MIN_PULSE_WIDTH;
+        if (maxPulse > MAX_PULSE_WIDTH)
+            maxPulse = MAX_PULSE_WIDTH;
+        this->minPulse = minPulse;     //store this value in uS
+        this->maxPulse = maxPulse;    //store this value in uS
+        this->minAngle = minAngle;
+        this->maxAngle = maxAngle;
         // Set up this channel
         // if you want anything other than default timer width, you must call setTimerWidth() before attach
         pwm.attachPin(this->pinNumber,REFRESH_CPS, this->timer_width );   // GPIO pin assigned to channel
@@ -135,14 +132,14 @@ void Servo::detach()
 void Servo::write(int value)
 {
     // treat values less than MIN_PULSE_WIDTH (500) as angles in degrees (valid values in microseconds are handled as microseconds)
-    if (value < this->min_pulse)
+    if (value < this->minPulse)
     {
-        if (value < this->min_angle)
-            value = this->min_angle;
-        else if (value > this->max_angle)
-            value = this->max_angle;
+        if (value < this->minAngle)
+            value = this->minAngle;
+        else if (value > this->maxAngle)
+            value = this->maxAngle;
 
-        value = map(value, this->min_angle, this->max_angle, this->min_pulse, this->max_pulse);
+        value = map(value, this->minAngle, this->maxAngle, this->minPulse, this->maxPulse);
     }
     this->writeMicroseconds(value);
 }
@@ -152,10 +149,10 @@ void Servo::writeMicroseconds(int value)
     // calculate and store the values for the given channel
     if (this->attached())   // ensure channel is valid
     {
-        if (value < this->min_pulse)          // ensure pulse width is valid
-            value = this->min_pulse;
-        else if (value > this->max_pulse)
-            value = this->max_pulse;
+        if (value < this->minPulse)          // ensure pulse width is valid
+            value = this->minPulse;
+        else if (value > this->maxPulse)
+            value = this->maxPulse;
 
         value = usToTicks(value);  // convert to ticks
         this->ticks = value;
@@ -166,7 +163,7 @@ void Servo::writeMicroseconds(int value)
 
 int Servo::read() // return the value as degrees
 {
-    return (map(readMicroseconds()+1, this->min_pulse, this->max_pulse, 0, 180));
+    return (map(readMicroseconds()+1, this->minPulse, this->maxPulse, 0, 180));
 }
 
 int Servo::readMicroseconds()

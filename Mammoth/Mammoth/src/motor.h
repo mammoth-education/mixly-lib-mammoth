@@ -7,11 +7,9 @@
  #include "WProgram.h"
 #endif
 
-#define DEBUG 1
+#include <ESP32Servo.h>
 
-#define LEDC_CHANNEL_0     0
-#define LEDC_TIMER_13_BIT  13
-#define LEDC_BASE_FREQ     100
+#define DEBUG 0
 
 #define MIN 0
 #define MAX 100
@@ -19,7 +17,7 @@
 class Motor {
   public:
     Motor();
-
+    ESP32PWM PWM;
     int pin;
   
     void begin(int pin);

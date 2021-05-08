@@ -7,7 +7,7 @@
  #include "WProgram.h"
 #endif
 
-#include "ESP32Servo.h"
+#include <ESP32Servo.h>
 
 #define DEBUG 0
 
@@ -16,14 +16,14 @@ class MServo {
     MServo();
 
     int pin;
-	int MIN_PULSE = 500;
-	int MAX_PULSE = 2500;
-	int MIN_ANGLE = 0;
-	int MAX_ANGLE = 270;
+    int MIN_PULSE = 500;
+    int MAX_PULSE = 2500;
+    int MIN_ANGLE = 0;
+    int MAX_ANGLE = 270;
     Servo myservo;
   
     void begin(int p);
-    void begin(int p, int min_pulse, int max_pulse, int min_angle, int max_angle);
+    void begin(int p, int minPulse, int maxPulse, int minAngle, int maxAngle);
     void setAngle(int angle);
 
   private:

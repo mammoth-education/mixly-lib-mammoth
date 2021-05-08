@@ -18,12 +18,12 @@ void MServo::begin(int p) {
   init();
 }
 
-void MServo::begin(int p, int min_pulse, int max_pulse, int min_angle, int max_angle) {
+void MServo::begin(int p, int minPulse, int maxPulse, int minAngle, int maxAngle) {
   pin = p;
-  MIN_PULSE = min_pulse;
-  MAX_PULSE = max_pulse;
-  MIN_ANGLE = min_angle;
-  MAX_ANGLE = max_angle;
+  MIN_PULSE = minPulse;
+  MAX_PULSE = maxPulse;
+  MIN_ANGLE = minAngle;
+  MAX_ANGLE = maxAngle;
   init();
 }
 
