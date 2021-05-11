@@ -15,8 +15,10 @@ void loop() {
     servo.setAngle(i);
     delay(10);
   }
+  delay(1000);
   for (int i = maxAngle; i >= minAngle; i--) {
     servo.setAngle(i);
     delay(10);
   }
+  delay(1000);
 }
