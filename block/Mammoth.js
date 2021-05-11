@@ -208,7 +208,7 @@ Blockly.Blocks.Servo_setAngle = {
         this.appendDummyInput()
             .appendField("舵机")
             .appendField(new Blockly.FieldTextInput("servo"), "IST")
-            .appendField("设置角度为(0~270)");
+            .appendField("设置角度为(0~180)");
         this.appendValueInput("angle");
         this.setColour("#00A29A");
         this.setInputsInline(true);
