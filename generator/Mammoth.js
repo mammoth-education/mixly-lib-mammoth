@@ -63,7 +63,7 @@ Blockly.Arduino.BH1745_setGain = function() {
 Blockly.Arduino.Motor_begin = function() {
     var IST = this.getFieldValue('IST');
     Blockly.Arduino.definitions_['define_Motor_1'] = '#include <motor.h>';
-    Blockly.Arduino.definitions_['define_Motor_2'] = 'Motor '+IST+' = Motor();';
+    Blockly.Arduino.definitions_['define_Motor_'+IST] = 'Motor '+IST+' = Motor();';
     var pin = this.getFieldValue('pin');
     var code = '';
     code += IST+'.begin(' + pin +');\n';
@@ -81,7 +81,7 @@ Blockly.Arduino.Motor_setStatus = function() {
 Blockly.Arduino.Servo_begin = function() {
     var IST = this.getFieldValue('IST');
     Blockly.Arduino.definitions_['define_Servo_1'] = '#include <servo.h>';
-    Blockly.Arduino.definitions_['define_Servo_2'] = 'MServo '+IST+'= MServo();';
+    Blockly.Arduino.definitions_['define_Servo_'+IST] = 'MServo '+IST+'= MServo();';
     var pin = this.getFieldValue('pin');
     var code = ''
     code += IST+'.begin('+pin+');\n';
