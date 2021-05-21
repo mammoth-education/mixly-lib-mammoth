@@ -26,6 +26,10 @@ void tone(int pin, unsigned int frequency, unsigned long duration){
 	noTone(pin);
 }
 
+void tone(int pin, unsigned int frequency, unsigned long duration, int channel){
+	tone(pin, frequency, duration);
+}
+
 void noTone(int pin){
 	ESP32PWM* chan = pwmFactory(pin);
 	if (chan != NULL) {
