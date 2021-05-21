@@ -11,6 +11,7 @@
 void tone(int pin,unsigned int frequency);
 
 void tone(int pin, unsigned int frequency, unsigned long duration);
+void tone(int pin, unsigned int frequency, unsigned long duration, int channel);
 
 void noTone(int pin);
 
