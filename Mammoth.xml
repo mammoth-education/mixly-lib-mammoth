@@ -19,11 +19,11 @@
 	<block type="BH1745_readColor">
 	</block>
 
-	<block type="BH1745_isDetectColor">
+	<!-- <block type="BH1745_isDetectColor">
     </block>
 
 	<block type="BH1745_setRgbcMode">
-    </block>
+    </block> -->
 	
 	<block type="BH1745_setGain">
     </block>
