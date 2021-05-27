@@ -3,6 +3,29 @@
 goog.provide('Blockly.Blocks.Mammoth');
 goog.require('Blockly.Blocks');
 
+var VAR = [
+    ["开",'1'],
+    ["关",'0'],
+];
+
+var servoPin = [
+    ["15","15"],
+    ["4","4"],
+    ["16","16"],
+    ["17","17"],
+];
+ var insidePin = [
+    ["33","33"],
+    ["26","26"],
+    ["14","14"],
+    ["13","13"],
+ ];
+ var outsidePin = [
+    ["32","32"],
+    ["25","25"],
+    ["12","12"],
+    ["27","27"],
+ ];
 //颜色传感器
 Blockly.Blocks.BH1745_begin = {
 
@@ -13,9 +36,9 @@ Blockly.Blocks.BH1745_begin = {
       .appendField(new Blockly.FieldTextInput("bh"), "IST")
       .appendField("设置引脚")
       .appendField("SDA")
-      .appendField(new Blockly.FieldDropdown(profile.default.digital), "sda")
+      .appendField(new Blockly.FieldDropdown(insidePin), "sda")
       .appendField("SCL")
-      .appendField(new Blockly.FieldDropdown(profile.default.digital), "scl")
+      .appendField(new Blockly.FieldDropdown(outsidePin), "scl")
       this.setColour("#00A29A");
       this.setInputsInline(true);
       this.setPreviousStatement(true);
@@ -153,7 +176,7 @@ Blockly.Blocks.Motor_begin = {
       .appendField("电机")
       .appendField(new Blockly.FieldTextInput("motor"), "IST")
       .appendField("设置引脚")
-      .appendField(new Blockly.FieldDropdown(profile.default.digital), "pin")
+      .appendField(new Blockly.FieldDropdown(insidePin), "pin")
       this.setColour("#00A29A");
       this.setInputsInline(true);
       this.setPreviousStatement(true);
@@ -192,7 +215,7 @@ Blockly.Blocks.Servo_begin = {
       .appendField("舵机")
       .appendField(new Blockly.FieldTextInput("servo"), "IST")
       .appendField("设置引脚")
-      .appendField(new Blockly.FieldDropdown(profile.default.digital), "pin")
+      .appendField(new Blockly.FieldDropdown(servoPin), "pin")
       this.setColour("#00A29A");
       this.setInputsInline(true);
       this.setPreviousStatement(true);
