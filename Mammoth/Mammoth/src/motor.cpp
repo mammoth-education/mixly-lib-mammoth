@@ -60,7 +60,7 @@ void Motor::setStatus(int status){
 }
 
 void Motor::setStatus(int status, int t){
-  setPower(status*70, t);
+  setPower(status*100, t);
 }
 
 void Motor::setPower(int power, int t){
