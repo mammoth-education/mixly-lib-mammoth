@@ -98,9 +98,9 @@ Blockly.Arduino.Servo_setAngle = function() {
 
 Blockly.Arduino.LEGO_Technic_Motor_begin = function() {
     var IST = this.getFieldValue('IST');
-    Blockly.Arduino.definitions_['define_Servo_1'] = '#include <servo.h>';
+    Blockly.Arduino.definitions_['define_Mammoth_LEGO_Technic_motor'] = '#include <LEGO_Technic_Motor.h>';
     Blockly.Arduino.definitions_['var_declare_Mammoth_LEGO_Technic_motor_'+IST] = 'LEGO_Technic_Motor '+IST+'= LEGO_Technic_Motor();';
-    var pin = this.getFieldValue('port');
+    var port = this.getFieldValue('port').split(", ");
     var code = ''
     code += `${IST}.begin(${port[0]}, ${port[1]});\n`;
     return code;

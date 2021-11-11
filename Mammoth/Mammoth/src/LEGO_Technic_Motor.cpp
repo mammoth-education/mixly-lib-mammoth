@@ -11,8 +11,6 @@ LEGO_Technic_Motor::LEGO_Technic_Motor() {}
 void LEGO_Technic_Motor::begin(int pin1, int pin2, int freq, int resolution) {
   _pin1 = pin1;
   _pin2 = pin2;
-  _pwm1 = ESPPWM();
-  _pwm2 = ESPPWM();
   _freq = freq;
   _resolution = resolution;
   init();
@@ -24,6 +22,19 @@ void LEGO_Technic_Motor::init() {
   ESP32PWM::allocateTimer(2);
   ESP32PWM::allocateTimer(3);
 
+  _checkPwm(_pin1);
+  _checkPwm(_pin2);
+  _pwm1 = ESP32PWM();
+  _pwm2 = ESP32PWM();
+  _pwm1.attachPin(_pin1, _freq, _resolution);
+  _pwm2.attachPin(_pin2, _freq, _resolution);
+
+#if DEBUG == 1
+  Serial.begin(115200);
+#endif
+}
+
+bool LEGO_Technic_Motor::_checkPwm(int pin) {
   if (ESP32PWM::hasPwm(pin) &&  // Is it possible for this pin to PWM
       (ESP32PWM::channelsRemaining() >
            0 ||                    // New channels availible to allocate
@@ -41,8 +52,7 @@ void LEGO_Technic_Motor::init() {
 #endif
       pinMode(pin, OUTPUT);
     }
-    _pwm1.attachPin(_pin1, _freq, _resolution);
-    _pwm2.attachPin(_pin2, _freq, _resolution);
+    return true;
   } else {
     Serial.print("Pin is not avaiable");
     Serial.println(pin);
@@ -50,11 +60,7 @@ void LEGO_Technic_Motor::init() {
       delay(1000);
     }
   }
-#if DEBUG == 1
-  Serial.begin(115200);
-#endif
 }
-
 /**
  *  Set motor power
  */
@@ -62,10 +68,10 @@ void LEGO_Technic_Motor::setSpeed(int speed) {
   float power = abs(speed / 100.0);
   int duty = power * pow(2, _resolution);
   if (speed > 0) {
-    _pwm1.setDuty(duty);
-    _pwm2.setDuty(0);
+    _pwm1.write(duty);
+    _pwm2.write(0);
   } else {
-    _pwm1.setDuty(0);
-    _pwm2.setDuty(duty);
+    _pwm1.write(0);
+    _pwm2.write(duty);
   }
 }

@@ -3,28 +3,27 @@
 goog.provide('Blockly.Blocks.Mammoth');
 goog.require('Blockly.Blocks');
 
-Blockly.Constants.Mammoth = {};
-Blockly.constants.Mammoth.servoPin = [
+var Mammoth_servoPin = [
   ["15","15"],
   ["4","4"],
   ["16","16"],
   ["17","17"],
 ];
-Blockly.constants.Mammoth.insidePin = [
+var Mammoth_insidePin = [
   ["33","33"],
   ["26","26"],
   ["14","14"],
   ["13","13"],
 ];
-Blockly.constants.Mammoth.outsidePin = [
+var Mammoth_outsidePin = [
   ["32","32"],
   ["25","25"],
   ["12","12"],
   ["27","27"],
 ];
-Blockly.Constants.Mammoth.LEGO_Technic_Port = [
-  ["19 18", ["19","18"]],
-  ["22 21", ["22","21"]],
+var Mammoth_LEGO_Technic_Port = [
+  ["19, 18", "19, 18"],
+  ["22, 21", "22, 21"],
 ];
 
 //颜色传感器
@@ -35,9 +34,9 @@ Blockly.Blocks.BH1745_begin = {
     .appendField(new Blockly.FieldTextInput("bh"), "IST")
     .appendField("设置引脚")
     .appendField("SDA")
-    .appendField(new Blockly.FieldDropdown(Blockly.constants.Mammoth.insidePin), "sda")
+    .appendField(new Blockly.FieldDropdown(Mammoth_insidePin), "sda")
     .appendField("SCL")
-    .appendField(new Blockly.FieldDropdown(Blockly.constants.Mammoth.outsidePin), "scl")
+    .appendField(new Blockly.FieldDropdown(Mammoth_outsidePin), "scl")
     this.setColour("#00A29A");
     this.setInputsInline(true);
     this.setPreviousStatement(true);
@@ -169,7 +168,7 @@ Blockly.Blocks.Motor_begin = {
     .appendField("电机")
     .appendField(new Blockly.FieldTextInput("motor"), "IST")
     .appendField("设置引脚")
-    .appendField(new Blockly.FieldDropdown(Blockly.constants.Mammoth.insidePin), "pin")
+    .appendField(new Blockly.FieldDropdown(Mammoth_insidePin), "pin")
     this.setColour("#00A29A");
     this.setInputsInline(true);
     this.setPreviousStatement(true);
@@ -205,7 +204,7 @@ Blockly.Blocks.Servo_begin = {
     .appendField("舵机")
     .appendField(new Blockly.FieldTextInput("servo"), "IST")
     .appendField("设置引脚")
-    .appendField(new Blockly.FieldDropdown(Blockly.constants.Mammoth.servoPin), "pin")
+    .appendField(new Blockly.FieldDropdown(Mammoth_servoPin), "pin")
     this.setColour("#00A29A");
     this.setInputsInline(true);
     this.setPreviousStatement(true);
@@ -235,9 +234,9 @@ Blockly.Blocks.LEGO_Technic_Motor_begin = {
   init: function() {
     this.appendDummyInput("")
       .appendField("乐高机械组电机")
-      .appendField(new Blockly.FieldTextInput("servo"), "IST")
+      .appendField(new Blockly.FieldTextInput("lt_motor"), "IST")
       .appendField("设置引脚")
-      .appendField(new Blockly.FieldDropdown(Blockly.constants.Mammoth.LEGO_Technic_Port), "port")
+      .appendField(new Blockly.FieldDropdown(Mammoth_LEGO_Technic_Port), "port")
     this.setColour("#00A29A");
     this.setInputsInline(true);
     this.setPreviousStatement(true);
@@ -250,9 +249,9 @@ Blockly.Blocks.LEGO_Technic_Motor_begin = {
 // 乐高电机
 Blockly.Blocks.LEGO_Technic_Motor_set_speed = {
   init: function() {
-    this.appendValueInput("Speed")
+    this.appendValueInput("speed")
     .appendField("乐高机械组电机")
-    .appendField(new Blockly.FieldTextInput("servo"), "IST")
+    .appendField(new Blockly.FieldTextInput("lt_motor"), "IST")
     .appendField("设置速度");
     this.setColour("#00A29A");
     this.setInputsInline(true);

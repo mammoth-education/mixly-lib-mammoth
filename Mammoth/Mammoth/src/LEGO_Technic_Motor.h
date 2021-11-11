@@ -20,13 +20,14 @@ class LEGO_Technic_Motor {
     void setSpeed(int speed);
 
   private:
-    void init(int freq=50, int resolution=10);
+    void init();
     int _pin1;
     int _pin2;
     ESP32PWM _pwm1;
     ESP32PWM _pwm2;
     int _freq;
     int _resolution;
+    bool _checkPwm(int pin);
 };
 
 #endif
