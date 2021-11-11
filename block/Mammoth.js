@@ -21,7 +21,7 @@ var Mammoth_outsidePin = [
   ["12","12"],
   ["27","27"],
 ];
-var Mammoth_LEGO_Technic_Port = [
+var Mammoth_Technic_Port = [
   ["19, 18", "19, 18"],
   ["22, 21", "22, 21"],
 ];
@@ -230,34 +230,34 @@ Blockly.Blocks.Servo_setAngle = {
 };
 
 // 乐高电机
-Blockly.Blocks.LEGO_Technic_Motor_begin = {
+Blockly.Blocks.Technic_Motor_begin = {
   init: function() {
     this.appendDummyInput("")
-      .appendField("乐高机械组电机")
+      .appendField("机械组电机")
       .appendField(new Blockly.FieldTextInput("lt_motor"), "IST")
       .appendField("设置引脚")
-      .appendField(new Blockly.FieldDropdown(Mammoth_LEGO_Technic_Port), "port")
+      .appendField(new Blockly.FieldDropdown(Mammoth_Technic_Port), "port")
     this.setColour("#00A29A");
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setTooltip("设置乐高机械组电机引脚");
+    this.setTooltip("设置机械组电机引脚");
     this.setHelpUrl('');
   }
 };
 
 // 乐高电机
-Blockly.Blocks.LEGO_Technic_Motor_set_speed = {
+Blockly.Blocks.Technic_Motor_set_speed = {
   init: function() {
     this.appendValueInput("speed")
-    .appendField("乐高机械组电机")
+    .appendField("机械组电机")
     .appendField(new Blockly.FieldTextInput("lt_motor"), "IST")
     .appendField("设置速度");
     this.setColour("#00A29A");
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setTooltip("设置乐高机械组电机转动速度，-100～100，负数为反方向");
+    this.setTooltip("设置机械组电机转动速度，-100～100，负数为反方向");
     this.setHelpUrl('');
   }
 };

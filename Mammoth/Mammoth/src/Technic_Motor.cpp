@@ -1,14 +1,14 @@
-#include "LEGO_Technic_Motor.h"
+#include "Technic_Motor.h"
 
 /**
  * Constructor
  */
-LEGO_Technic_Motor::LEGO_Technic_Motor() {}
+Technic_Motor::Technic_Motor() {}
 
 /**
  * Configure sensor
  */
-void LEGO_Technic_Motor::begin(int pin1, int pin2, int freq, int resolution) {
+void Technic_Motor::begin(int pin1, int pin2, int freq, int resolution) {
   _pin1 = pin1;
   _pin2 = pin2;
   _freq = freq;
@@ -16,7 +16,7 @@ void LEGO_Technic_Motor::begin(int pin1, int pin2, int freq, int resolution) {
   init();
 }
 
-void LEGO_Technic_Motor::init() {
+void Technic_Motor::init() {
   ESP32PWM::allocateTimer(0);
   ESP32PWM::allocateTimer(1);
   ESP32PWM::allocateTimer(2);
@@ -34,7 +34,7 @@ void LEGO_Technic_Motor::init() {
 #endif
 }
 
-bool LEGO_Technic_Motor::_checkPwm(int pin) {
+bool Technic_Motor::_checkPwm(int pin) {
   if (ESP32PWM::hasPwm(pin) &&  // Is it possible for this pin to PWM
       (ESP32PWM::channelsRemaining() >
            0 ||                    // New channels availible to allocate
@@ -64,7 +64,7 @@ bool LEGO_Technic_Motor::_checkPwm(int pin) {
 /**
  *  Set motor power
  */
-void LEGO_Technic_Motor::setSpeed(int speed) {
+void Technic_Motor::setSpeed(int speed) {
   float power = abs(speed / 100.0);
   int duty = power * pow(2, _resolution);
   if (speed > 0) {

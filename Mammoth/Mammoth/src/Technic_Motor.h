@@ -1,5 +1,5 @@
-#ifndef LEGO_Technic_Motor_h
-#define LEGO_Technic_Motor_h
+#ifndef Technic_Motor_h
+#define Technic_Motor_h
 
 #if (ARDUINO >= 100)
  #include "Arduino.h"
@@ -11,9 +11,9 @@
 
 #define DEBUG 0
 
-class LEGO_Technic_Motor {
+class Technic_Motor {
   public:
-    LEGO_Technic_Motor();
+    Technic_Motor();
 
   
     void begin(int pin1, int pin2, int freq=50, int resolution=10);

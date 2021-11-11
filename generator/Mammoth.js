@@ -96,17 +96,17 @@ Blockly.Arduino.Servo_setAngle = function() {
     return code;
 };
 
-Blockly.Arduino.LEGO_Technic_Motor_begin = function() {
+Blockly.Arduino.Technic_Motor_begin = function() {
     var IST = this.getFieldValue('IST');
-    Blockly.Arduino.definitions_['define_Mammoth_LEGO_Technic_motor'] = '#include <LEGO_Technic_Motor.h>';
-    Blockly.Arduino.definitions_['var_declare_Mammoth_LEGO_Technic_motor_'+IST] = 'LEGO_Technic_Motor '+IST+'= LEGO_Technic_Motor();';
+    Blockly.Arduino.definitions_['define_Mammoth_Technic_motor'] = '#include <Technic_Motor.h>';
+    Blockly.Arduino.definitions_['var_declare_Mammoth_Technic_motor_'+IST] = 'Technic_Motor '+IST+'= Technic_Motor();';
     var port = this.getFieldValue('port').split(", ");
     var code = ''
     code += `${IST}.begin(${port[0]}, ${port[1]});\n`;
     return code;
 };
 
-Blockly.Arduino.LEGO_Technic_Motor_set_speed = function() {
+Blockly.Arduino.Technic_Motor_set_speed = function() {
     var IST = this.getFieldValue('IST');
     var speed = Blockly.Arduino.valueToCode(this, 'speed',Blockly.Arduino.ORDER_ASSIGNMENT) || '0'; 
     var code = ''
