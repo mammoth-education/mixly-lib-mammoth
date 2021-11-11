@@ -1,29 +1,24 @@
-#include "servo.h"
+#include "LEGO_Technic_Motor.h"
 
 /**
  * Constructor
  */
-MServo::MServo() {}
+LEGO_Technic_Motor::LEGO_Technic_Motor() {}
 
 /**
  * Configure sensor
  */
-void MServo::begin(int p) {
-  pin = p;
+void LEGO_Technic_Motor::begin(int pin1, int pin2, int freq, int resolution) {
+  _pin1 = pin1;
+  _pin2 = pin2;
+  _pwm1 = ESPPWM();
+  _pwm2 = ESPPWM();
+  _freq = freq;
+  _resolution = resolution;
   init();
 }
 
-void MServo::begin(int p, int minPulse, int maxPulse, int minAngle,
-                   int maxAngle) {
-  pin = p;
-  this->minPulse = minPulse;
-  this->maxPulse = maxPulse;
-  this->minAngle = minAngle;
-  this->maxAngle = maxAngle;
-  init();
-}
-
-void MServo::init() {
+void LEGO_Technic_Motor::init() {
   ESP32PWM::allocateTimer(0);
   ESP32PWM::allocateTimer(1);
   ESP32PWM::allocateTimer(2);
@@ -46,10 +41,8 @@ void MServo::init() {
 #endif
       pinMode(pin, OUTPUT);
     }
-    myservo.setPeriodHertz(50);  // standard 50 hz servo
-    // attaches the servo on pin 18 to the servo object
-    myservo.attach(pin, this->minPulse, this->maxPulse, this->minAngle,
-                   this->maxAngle);
+    _pwm1.attachPin(_pin1, _freq, _resolution);
+    _pwm2.attachPin(_pin2, _freq, _resolution);
   } else {
     Serial.print("Pin is not avaiable");
     Serial.println(pin);
@@ -65,4 +58,14 @@ void MServo::init() {
 /**
  *  Set motor power
  */
-void MServo::setAngle(int angle) { myservo.write(angle); }
+void LEGO_Technic_Motor::setSpeed(int speed) {
+  float power = abs(speed / 100.0);
+  int duty = power * pow(2, _resolution);
+  if (speed > 0) {
+    _pwm1.setDuty(duty);
+    _pwm2.setDuty(0);
+  } else {
+    _pwm1.setDuty(0);
+    _pwm2.setDuty(duty);
+  }
+}

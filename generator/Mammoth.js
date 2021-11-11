@@ -6,8 +6,8 @@ goog.require('Blockly.Arduino');
 
 Blockly.Arduino.BH1745_begin = function() {
     var IST = this.getFieldValue('IST');
-    Blockly.Arduino.definitions_['define_BH1745_1'] = '#include <BH1745.h>';
-    Blockly.Arduino.definitions_['define_BH1745_2'] = 'BH1745 '+IST+' = BH1745();';
+    Blockly.Arduino.definitions_['include_BH1745'] = '#include <BH1745.h>';
+    Blockly.Arduino.definitions_['var_declare_BH1745_obj'] = 'BH1745 '+IST+' = BH1745();';
     var sda = this.getFieldValue('sda');
     var scl = this.getFieldValue('scl');
     var code = '';
@@ -62,8 +62,8 @@ Blockly.Arduino.BH1745_setGain = function() {
 
 Blockly.Arduino.Motor_begin = function() {
     var IST = this.getFieldValue('IST');
-    Blockly.Arduino.definitions_['define_Motor_1'] = '#include <motor.h>';
-    Blockly.Arduino.definitions_['define_Motor_'+IST] = 'Motor '+IST+' = Motor();';
+    Blockly.Arduino.definitions_['include_Motor'] = '#include <motor.h>';
+    Blockly.Arduino.definitions_['var_declare_Motor_obj_'+IST] = 'Motor '+IST+' = Motor();';
     var pin = this.getFieldValue('pin');
     var code = '';
     code += IST+'.begin(' + pin +');\n';
@@ -80,8 +80,8 @@ Blockly.Arduino.Motor_setStatus = function() {
 
 Blockly.Arduino.Servo_begin = function() {
     var IST = this.getFieldValue('IST');
-    Blockly.Arduino.definitions_['define_Servo_1'] = '#include <servo.h>';
-    Blockly.Arduino.definitions_['define_Servo_'+IST] = 'MServo '+IST+'= MServo();';
+    Blockly.Arduino.definitions_['include_Servo_1'] = '#include <servo.h>';
+    Blockly.Arduino.definitions_['var_declare_Servo_obj_'+IST] = 'MServo '+IST+'= MServo();';
     var pin = this.getFieldValue('pin');
     var code = ''
     code += IST+'.begin('+pin+');\n';
@@ -93,5 +93,23 @@ Blockly.Arduino.Servo_setAngle = function() {
     var angle = Blockly.Arduino.valueToCode(this, 'angle',Blockly.Arduino.ORDER_ASSIGNMENT) || '0'; 
     var code = ''
     code += IST+'.setAngle('+angle+');\n';
+    return code;
+};
+
+Blockly.Arduino.LEGO_Technic_Motor_begin = function() {
+    var IST = this.getFieldValue('IST');
+    Blockly.Arduino.definitions_['define_Servo_1'] = '#include <servo.h>';
+    Blockly.Arduino.definitions_['var_declare_Mammoth_LEGO_Technic_motor_'+IST] = 'LEGO_Technic_Motor '+IST+'= LEGO_Technic_Motor();';
+    var pin = this.getFieldValue('port');
+    var code = ''
+    code += `${IST}.begin(${port[0]}, ${port[1]});\n`;
+    return code;
+};
+
+Blockly.Arduino.LEGO_Technic_Motor_set_speed = function() {
+    var IST = this.getFieldValue('IST');
+    var speed = Blockly.Arduino.valueToCode(this, 'speed',Blockly.Arduino.ORDER_ASSIGNMENT) || '0'; 
+    var code = ''
+    code += IST+'.setSpeed('+speed+');\n';
     return code;
 };
