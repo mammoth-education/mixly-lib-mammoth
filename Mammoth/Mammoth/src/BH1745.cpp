@@ -171,9 +171,9 @@ byte BH1745::readColor() {
 
   if (hue < 32) {  //change from 15, according to actual test
     return RED;
-  } else if (hue < 53) {
+  } else if (hue < 53) {  //change from 30, according to actual test
     return ORANGE;
-  } else if (hue < 67) {
+  } else if (hue < 100) {  //change from 90, according to actual test
     return YELLOW;
   } else if (hue < 173) {
     return GREEN;
