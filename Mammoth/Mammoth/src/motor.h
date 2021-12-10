@@ -7,7 +7,7 @@
  #include "WProgram.h"
 #endif
 
-#include <ESP32Servo.h>
+#include <ESP32PWM.h>
 
 #define DEBUG 0
 
