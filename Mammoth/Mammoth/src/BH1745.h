@@ -78,8 +78,8 @@ class BH1745 {
     long blue = 0;
     long clear = 0;
     long hue = 0;
-    long saturation = 0;
-    long lightness = 0;
+    float saturation = 0;
+    float lightness = 0;
     unsigned long rgb = 0;
     int rgbcMode = RGBC_8_BIT;
 
